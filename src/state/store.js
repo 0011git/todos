@@ -11,7 +11,7 @@ import { create } from 'zustand';
 
 //axios 인스턴스 생성, 해당 인스턴스를 이용해 HTTP요청을 쉽게 보낼 수 있음.
 const instance = axios.create({
-    baseURL: 'http://localhost:4000/todos',   //baseURL: 요청을 날릴 서버 주소, 추후 배포시 주소 변경 필요
+    baseURL: process.env.REACT_APP_SERVER_URL,   //baseURL: 요청을 날릴 서버 주소, 추후 배포시 주소 변경 필요
     // timeout: 1000,   //timeout: 지정 시간(밀리초) 내에 요청이 완료되지 않으면 취소함.
     // headers: {'X-Custom-Header': 'foobar'}   //headers: 요청에 포함할 기본 헤더
 });
@@ -34,8 +34,8 @@ const store = create((set) => (
     //   removeAllBears: () => set({ bears: 0 }),       //bears를 초기상태(0)으로 설정
 
         //현재 상태
-        data : [],
-        sortData : [],
+        data : [],  //원본 데이터
+        // sortData : [],  //정렬데이터, 선생님코드
 
         //여기서 set함수의 기능 정의
         dataCtrl : async function(action) {     //async로 비동기를 동기화
@@ -88,10 +88,11 @@ const store = create((set) => (
                     break;
             }
 
-
             // [질문] : set함수 실행 위치에 대한 의문점
             // set함수를 정의?하는 곳(dataCtrl) 범위 안에서 왜 set함수를 실행시키는거지..? 내가 중괄호 범위를 잘못 잡았나?
-            set({data: res.data.list}); // set함수로 상태를 업데이트 시킴       //만약 json에 list외에 다른 배열이 있다면 res.data만 뽑아서 주는게 맞음.
+            // [A] : 처음에 data는 빈배열로 초기화, action.type에 맞게 http요청해서 데이터를 맞게 (1)번 방법(직접 상태 설정)으로 세팅해줌. = dataCtrl
+
+            set({data: res.data}); // set함수로 상태를 업데이트 시킴       //만약 json에 list외에 다른 배열이 있다면 res.data만 뽑아서 주는게 맞음.
             //ㄴ이걸 axios.then이랑 비교해보면
             //axios.post('주소')  ←이 부분은 위에서 진행함
             //.then(res ...  ←이 부분도 진행함
@@ -107,13 +108,13 @@ const store = create((set) => (
                      * (2)현재 상태를 기반으로 업데이트(현재 상태에 계산을 해줌)
                      * 두 가지가 있다.
                      * 여기서는 새로운 상태를 직접 설정하는 (1)번 방법을 사용함.
-                     * 따라서 변화한 상태를, 객체 형태로 인자값에 넣어서 보내줌.
+                     * 따라서 변화한 상태를, 객체 형태(오브젝트 형태)로 인자값에 넣어서 보내줌.
                      */
 
         },
 
 
-        /*--선생님코드---------------------------------------------------------------------
+        /**--선생님코드---------------------------------------------------------------------
         //set함수는 목적에 맞게 여러 개 생성 가능
         sortCtrl : function(sort) {
             let findData;

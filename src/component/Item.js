@@ -8,6 +8,8 @@ const Item = ({li, type}) => {
     function todoStatus() {
         dataCtrl({type:'PUT', data:{id:li.id, status:!li.status}})
     }
+    
+    //전체-진행중-완료 감시하다가 바뀔때 switch문 실시
     useEffect(() => {
         switch (type) {
             case 'progress':
@@ -35,7 +37,7 @@ const Item = ({li, type}) => {
   return (
     <li className='' ref={liRef} >
         <label onClick={() => {setList(!list);}} htmlFor={li.id}>
-            <input type='checkbox' id={li.id} checked={li.status} onChange={todoStatus} className='checkbox' />{li.todo}
+            <input type='checkbox' id={li.id} defaultChecked={li.status} onChange={todoStatus} className='checkbox' />{li.todo}
         </label>
         <div>
             {/* <button>수정</button> */}

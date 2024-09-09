@@ -12,7 +12,7 @@ const Insert = () => {
         e.preventDefault();
         let data = {    //서버에 보낼 데이터 형식
             id: uuidv4(),
-            todo: e.target.todo.value,  //form요소는 자식 요소들의 name값으로 바로 접근 가능함.
+            todo: e.target.todo.value,  //form요소는 자식 요소들의 name(여기서는 todo)값으로 바로 접근 가능함.
             status: false
         }
 
