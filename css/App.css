@@ -1,0 +1,107 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  padding: 0;
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+button {
+  padding: 4px 8px;
+  margin: 0;
+  border: none;
+  border-radius: 8px;
+  background-color: rgb(64, 118, 235);
+  color: white;
+}
+
+.toDoList {
+  max-width: 480px;
+  padding: 0 16px;
+}
+.toDoList h2 {
+  margin: 20px 0;
+}
+.toDoList h2 span {
+  color: rgb(64, 118, 235);
+}
+.toDoList .insert {
+  min-width: 320px;
+  margin: 20px 0;
+  display: flex;
+}
+.toDoList .insert input {
+  min-width: calc(100% - 50px);
+  padding: 8px 16px;
+  margin: 0 4px 0 0;
+  border: 1px solid #2f2f2f;
+  border-radius: 8px;
+}
+.toDoList .sort {
+  margin: 16px 0;
+  display: flex;
+}
+.toDoList .sort h4 {
+  margin-right: 16px;
+  white-space: nowrap;
+}
+.toDoList .sort ul {
+  display: flex;
+  justify-content: space-evenly;
+}
+.toDoList .sort ul li label {
+  margin: 0 8px;
+  white-space: nowrap;
+}
+.toDoList .list ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+.toDoList .list ul li {
+  margin: 8px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.toDoList .list ul li.hide {
+  display: none;
+}
+.toDoList .list ul li label {
+  cursor: pointer;
+}
+.toDoList .list ul li label .checkbox {
+  cursor: pointer;
+}
+.toDoList .list ul li label.clicked {
+  text-decoration: line-through;
+  color: #ccc;
+}
+.toDoList .list ul li label input.clicked {
+  background-color: #ccc;
+}
+.toDoList .list ul li div button {
+  cursor: pointer;
+}
+.toDoList .list ul li div button.clicked {
+  background-color: #ccc;
+}
+.toDoList .list ul li.clicked li label {
+  text-decoration: line-through;
+  color: #ccc;
+}
+.toDoList .list ul li.clicked li label input {
+  background-color: #ccc;
+}
+.toDoList .list ul li.clicked li div button {
+  background-color: #ccc;
+}
