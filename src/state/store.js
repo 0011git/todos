@@ -12,6 +12,7 @@ import { create } from 'zustand';
 //axios 인스턴스 생성, 해당 인스턴스를 이용해 HTTP요청을 쉽게 보낼 수 있음.
 const instance = axios.create({
     baseURL: process.env.REACT_APP_SERVER_URL,   //baseURL: 요청을 날릴 서버 주소, 추후 배포시 주소 변경 필요
+                    //env: 환경 변수, 숨겨야 하는 정보를 env파일에 작성, 호출?시 'process.env.변수명'으로 사용
     // timeout: 1000,   //timeout: 지정 시간(밀리초) 내에 요청이 완료되지 않으면 취소함.
     // headers: {'X-Custom-Header': 'foobar'}   //headers: 요청에 포함할 기본 헤더
 });

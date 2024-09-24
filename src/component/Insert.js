@@ -21,7 +21,7 @@ const Insert = () => {
         }else{
             sweetAlert('NO INPUT');
         }
-        console.log(data);
+        // console.log(data);
         e.target.todo.value = '';   //form제출 후 인풋박스 지우기
         e.target.todo.focus();
     }
