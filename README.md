@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# 📝 투두 리스트 웹 애플리케이션
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+이 프로젝트는 사용자가 할 일을 추가하고 관리할 수 있는 투두 리스트 웹 애플리케이션입니다.
+React와 Zustand를 활용하여 상태 관리를 구현했으며,
+MongoDB를 사용하여 데이터를 효율적으로 저장하고 관리합니다.
 
-## Available Scripts
+![project_main](https://example.com/project_image.png)
 
-In the project directory, you can run:
+## 🔗 사이트 URL
 
-### `npm start`
+- [투두 리스트 웹 앱 바로가기](https://todolist-tau-rosy-33.vercel.app/)
+<!-- 여기에 자기 배포 url 필요 -->
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📑 개요
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. **주제**
+   - 사용자의 일정을 관리할 수 있는 투두 리스트 애플리케이션
+2. **목표**
+   - 사용자가 할 일을 추가하고 삭제하며 상태를 관리할 수 있도록 하는 것
+3. **개발 환경**
+   - HTML, CSS, JavaScript (React), Axios, Zustand, MongoDB
+4. **기간 및 인원**
+   - 2024.10.01 ~ 2024.10.30 (30일), 1인 (수정 필요)
 
-### `npm test`
+## 🙌 담당 직무
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+|    이름    |                    GitHub                     |   직무   |
+| :--------: | :-------------------------------------------: | :------: |
+| **허다영** | **[my-github](https://github.com/my-github)** | **개발** |
 
-### `npm run build`
+## 💡 주요 기능
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 1. 할 일 추가 (`Insert` 컴포넌트)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 사용자가 입력한 할 일을 리스트에 추가합니다.
+- `uuid`를 사용하여 각 할 일에 고유한 ID를 부여합니다.
+- `dataCtrl` 함수로 상태를 업데이트하며, 입력값이 비어있지 않을 경우에만 추가됩니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 2. 할 일 목록 표시 (`List` 컴포넌트)
 
-### `npm run eject`
+- `useEffect` 훅을 사용하여 컴포넌트가 마운트될 때 서버에서 MongoDB에 저장된 데이터를 가져옵니다.
+- 데이터가 로드되면 `Item` 컴포넌트를 사용하여 각 할 일을 리스트로 표시합니다.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 3. 할 일 상태 변경 및 삭제 (`Item` 컴포넌트)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- 체크박스를 클릭하면 할 일의 상태가 변경됩니다. 이때 `dataCtrl`을 호출하여 PUT 요청을 보냅니다.
+- 각 할 일 옆의 삭제 버튼을 클릭하면 해당 할 일이 MongoDB에서 삭제됩니다.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 4. 필터링 기능 (`Sort` 컴포넌트)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- 사용자가 'All', 'Active', 'Completed' 버튼을 클릭하여 할 일을 필터링할 수 있습니다.
+- `useEffect` 훅을 사용하여 선택된 필터 타입에 따라 상태를 업데이트합니다.
 
-## Learn More
+## 🐱‍💻 MongoDB 사용의 강점
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **효율적인 데이터 관리**: MongoDB는 NoSQL 데이터베이스로서 비구조적 데이터를 유연하게 저장할 수 있어, 사용자의 할 일 목록과 같은 다양한 형식의 데이터를 쉽게 관리할 수 있습니다.
+- **확장성**: MongoDB는 수평적 확장이 가능하여, 데이터량이 증가해도 성능 저하 없이 안정적으로 운영할 수 있습니다.
+- **실시간 데이터 업데이트**: MongoDB의 강력한 쿼리 기능을 통해 실시간으로 데이터를 업데이트하고, 사용자에게 즉각적인 피드백을 제공할 수 있습니다.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🛠️ 사용된 훅
 
-### Code Splitting
+- `useEffect`: 컴포넌트가 마운트될 때 또는 종속성이 변경될 때 특정 작업을 수행합니다. 데이터 가져오기, 필터링 등에서 사용됩니다.
+- `useState`: 컴포넌트의 로컬 상태를 관리합니다. 필터 타입을 저장하는 데 사용됩니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 💥 트러블 슈팅
 
-### Analyzing the Bundle Size
+1. **데이터 유지 문제**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+   - 페이지 새로 고침 시 할 일 리스트가 사라지는 이슈 발생.
 
-### Making a Progressive Web App
+   **_해결 방안_**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+   - 로컬 스토리지를 사용하여 할 일 데이터를 저장하고, 페이지 로드 시 데이터를 불러오는 기능 구현.
 
-### Advanced Configuration
+2. **상태 업데이트 문제**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+   - 체크박스를 클릭할 때 상태가 올바르게 업데이트되지 않는 이슈 발생.
 
-### Deployment
+   **_해결 방안_**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   - 상태 업데이트를 위해 `dataCtrl` 함수에 PUT 요청을 추가하여 상태를 변경하도록 수정.
